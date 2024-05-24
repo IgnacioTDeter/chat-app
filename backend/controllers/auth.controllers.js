@@ -1,4 +1,5 @@
 import User from '../models/user.model.js';
+import bycript from 'bcryptjs';
 
 
 export const login = (req, res) => {
@@ -23,6 +24,8 @@ export const signup = async (req, res) => {
 			return res.status(400).json({ error: "Username already exists" });
 		}
 
+		const salt = await  bycript.genSalt(10);
+		const hashedPassword = await bycript.hash(password, salt)
 		// https://avatar-placeholder.iran.liara.run/
 
 		const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
@@ -31,7 +34,7 @@ export const signup = async (req, res) => {
 		const newUser = new User({
 			fullName,
 			username,
-			password,
+			password:hashedPassword,
 			gender,
 			profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
 		});
