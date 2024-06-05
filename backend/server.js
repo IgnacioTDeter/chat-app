@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectMongoDB from './db/connectMongoDB.js'
 import authRoutes from './routes/auth.routes.js'
+import MessageRoutes from './routes/message.routes.js'
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -18,6 +19,7 @@ app.listen(PORT, () => {
 app.use(express.json()) // Middleware para analizar el JSON en el cuerpo de las solicitudes
 
 app.use("/api/auth", authRoutes)
+app.use("/api/messages", MessageRoutes)
 
 
 app.get("/", (req, res) => {
