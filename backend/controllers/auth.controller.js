@@ -1,15 +1,10 @@
-import User from '../models/user.model.js';
-import bycript from 'bcryptjs';
-import generateTokenAndSetCookie from '../utils/generate.token.js';
-
-
-
+import bcrypt from "bcryptjs";
+import User from "../models/user.model.js";
+import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 export const signup = async (req, res) => {
-    console.log(req.body)
 	try {
 		const { fullName, username, password, confirmPassword, gender } = req.body;
-        console.log(req.body)
 
 		if (password !== confirmPassword) {
 			return res.status(400).json({ error: "Passwords don't match" });
@@ -21,8 +16,10 @@ export const signup = async (req, res) => {
 			return res.status(400).json({ error: "Username already exists" });
 		}
 
-		const salt = await  bycript.genSalt(10);
-		const hashedPassword = await bycript.hash(password, salt)
+		// HASH PASSWORD HERE
+		const salt = await bcrypt.genSalt(10);
+		const hashedPassword = await bcrypt.hash(password, salt);
+
 		// https://avatar-placeholder.iran.liara.run/
 
 		const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
@@ -31,14 +28,14 @@ export const signup = async (req, res) => {
 		const newUser = new User({
 			fullName,
 			username,
-			password:hashedPassword,
+			password: hashedPassword,
 			gender,
 			profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
 		});
 
 		if (newUser) {
-			
-			generateTokenAndSetCookie(newUser._id, res)
+			// Generate JWT token here
+			generateTokenAndSetCookie(newUser._id, res);
 			await newUser.save();
 
 			res.status(201).json({
@@ -57,25 +54,24 @@ export const signup = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-
 	try {
-		const {username, password} = req.body;
-		const user = await User.findOne({username});
-		const isPasswordCorrect = await bycript.compare(password, user?.password || "")
+		const { username, password } = req.body;
+		const user = await User.findOne({ username });
+		const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
+		
 
-		if(!user || !isPasswordCorrect){
-			return res.status(400).json({error: "Invalid username or password"})
+		if (!user || !isPasswordCorrect) {
+			return res.status(400).json({ error: "Invalid username or password" });
 		}
 
 		generateTokenAndSetCookie(user._id, res);
+
 		res.status(200).json({
 			_id: user._id,
 			fullName: user.fullName,
 			username: user.username,
 			profilePic: user.profilePic,
 		});
-
-
 	} catch (error) {
 		console.log("Error in login controller", error.message);
 		res.status(500).json({ error: "Internal Server Error" });
@@ -83,12 +79,11 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-
 	try {
-		res.cookie("jwt", "", {maxAge: 0})
-		res.status(200).json({message: "Logged out succesfully"})
+		res.cookie("jwt", "", { maxAge: 0 });
+		res.status(200).json({ message: "Logged out successfully" });
 	} catch (error) {
 		console.log("Error in logout controller", error.message);
-		res.status(500).json({error: "Internal Server Error"})
+		res.status(500).json({ error: "Internal Server Error" });
 	}
 };
