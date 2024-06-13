@@ -1,8 +1,10 @@
+import SearchInput from '../sidebar/SearchInput'
+
 const Sidebar = () =>{
     return(
-        <article className="w-1/3">
+        <article className="w-1/4 items-center p-4">
             <SearchInput/>
-            <div className="divider px-3"></div>
+            <div className="divider"></div>
             {/*<Conversations/>
             <Logout />*/}
         </article>
