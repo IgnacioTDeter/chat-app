@@ -1,4 +1,6 @@
 import SearchInput from '../sidebar/SearchInput'
+import Conversations from './Conversations'
+
 
 const Sidebar = () =>{
     return(
@@ -7,6 +9,7 @@ const Sidebar = () =>{
             <div className="divider"></div>
             {/*<Conversations/>
             <Logout />*/}
+            <Conversations/>
         </article>
     )
 }

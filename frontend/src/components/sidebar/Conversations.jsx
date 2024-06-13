@@ -3,11 +3,13 @@ import Conversation from "./Conversation"
 const Conversations = () =>{
     return(
         <article className="flex flex-col overflow-auto py-3">
-            <Convesation/>
-            <Convesation/>
-            <Convesation/>
-            <Convesation/>
-            <Convesation/>
+            <Conversation/>
+            <Conversation/>
+            <Conversation/>
+            <Conversation/>
+            <Conversation/>
         </article>
     )
 }
+
+export default Conversations;
