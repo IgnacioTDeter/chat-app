@@ -1,5 +1,6 @@
 const Message = () =>{
     return(
+
         <div className="chat chat-end">
             <div className="chat-bubble text-white bg-amber-600">
                Hii Jhoe, how is it going?
@@ -8,6 +9,8 @@ const Message = () =>{
                 12:45
             </div>
         </div>
+
+        
     )
 }
 
