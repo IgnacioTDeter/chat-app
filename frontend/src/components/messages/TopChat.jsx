@@ -13,7 +13,7 @@ const TopChat = () => {
                         <p>Jhon Doe</p>
                     </div>
                     <div className="text-gray-500 text-xs  ">
-                    Having coffee ☕ and procrastinating a bit
+                    Having coffee and procrastinating a bit
                     </div>
                 </div>
             </div>

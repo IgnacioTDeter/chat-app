@@ -10,7 +10,6 @@ const Conversation = () =>{
                 <div className="flex gap-3 justify-between">
                      <p className="font-bold text-gray-200"> Jhon Doe </p>
                 </div>
-                
             </div>
 
         </article>
