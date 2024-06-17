@@ -1,9 +1,22 @@
 import { useState } from "react";
 import GenderCheckbox from '../singup/GenderCheckbox'
+import { Link } from "react-router-dom";
 
 const Signup = () =>{
   
-    
+    const [inputs, setInputs] = useState({
+        fullName: '',
+        username: '',
+        password: '',
+        gender:'',
+    }) 
+
+    const handleCheckboxChange = (gender) =>{
+
+        setInputs({...inputs,gender})
+    }
+
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await signup(inputs);
@@ -27,7 +40,7 @@ const Signup = () =>{
                         type='text' //Tipo texto
                         placeholder='Ej: Juan Perez'
                         className='w-full input input-bordered h-10'
-                        //value={inputs.fullName}
+                        value={inputs.fullName}
 						onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })}
 
                     />
@@ -37,9 +50,9 @@ const Signup = () =>{
                     <label className="label text-white mt-3" htmlFor="">Nombre de Usuario</label>
                     <input
                         type='Ej: juanPerez22'
-                        placeholder='Ingrese su contraseña'
+                        placeholder='Ingrese su nombre de usuario'
                         className='w-full input input-bordered h-10'
-                        //value={inputs.username}
+                        value={inputs.username}
 						onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
                     />
                 </div>
@@ -50,16 +63,16 @@ const Signup = () =>{
                         type='Ingrese su contraseña'
                         placeholder='Ingrese su contraseña'
                         className='w-full input input-bordered h-10'
-                        //value={inputs.password}
+                        value={inputs.password}
 						onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
                     />
                 </div>
 
-                <GenderCheckbox></GenderCheckbox>
+                <GenderCheckbox  onCheckboxChange={handleCheckboxChange} selectedGender={inputs.gender}/>
 
-                <a to='/login' className='text-sm w-2/3 cursor-pointer float-left hover:underline hover:text-blue-600 mt-3 inline-block text-gray-400'>
+                <Link to='/login' className='text-sm w-2/3 cursor-pointer float-left hover:underline hover:text-blue-600 mt-3 inline-block text-gray-400'>
 						{"Already"} have an account?
-				</a>
+				</Link>
 
                 <div className="w-2/3 mt-10">
                     <button className="btn btn-warning w-full" >

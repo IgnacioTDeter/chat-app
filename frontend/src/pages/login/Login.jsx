@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -47,9 +47,9 @@ const Login = () => {
                     />
                 </div>
 
-                <a to='/signup' className='text-sm w-2/3 cursor-pointer float-left hover:underline hover:text-blue-600 mt-3 inline-block'>
+                <Link to={'/signup'} className='text-sm w-2/3 cursor-pointer float-left hover:underline hover:text-blue-600 mt-3 inline-block'>
 						{"Don't"} have an account?
-				</a>
+				</Link>
 
                 <div className="w-2/3 mt-10">
                     <button className="btn btn-warning w-full" >
