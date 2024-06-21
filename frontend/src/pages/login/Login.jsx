@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useLogin from "../../hooks/useLogin";
 
 
 const Login = () => {
 
-    const [userName, setUsername] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const {loading, login} = useLogin();
     
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -47,13 +49,13 @@ const Login = () => {
                     />
                 </div>
 
-                <Link to={'/signup'} className='text-sm w-2/3 cursor-pointer float-left hover:underline hover:text-blue-600 mt-3 inline-block'>
+                <Link to={'/signup'} className='text-sm w-2/3 cursor-pointer float-left hover:underline hover:text-blue-600 mt-3 inline-block text-white'>
 						{"Don't"} have an account?
 				</Link>
 
                 <div className="w-2/3 mt-10">
-                    <button className="btn btn-warning w-full" >
-                        Iniciar Sesion
+                    <button className="btn btn-warning w-full" disabled={loading} >
+                    {loading ? <span className='loading loading-spinner '></span> : "Iniciar sesion"}
                     </button>
                 </div>
 
