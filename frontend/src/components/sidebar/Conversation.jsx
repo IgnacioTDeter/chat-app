@@ -1,5 +1,5 @@
 
-const Conversation = ({ conversation, lastIdx }) => {
+const Conversation = ({ conversation }) => {
     return (
         <article className="flex p-2 gap-3  bg-transparent hover:bg-white hover:bg-opacity-20  items-center justify-center cursor-pointer ">
             <div className="avatar online">

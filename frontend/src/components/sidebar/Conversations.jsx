@@ -7,13 +7,13 @@ const Conversations = () => {
     console.log("Conversations:", conversations);
     return (
         <article className="flex flex-col overflow-auto py-3">
-            {conversations.map((conversation, idx) => (
+            {conversations.map((conversation) => (
                 <div className="">
                     <div className="divider h-auto my-0"></div>
                     <Conversation
                         key={conversation._id}
                         conversation={conversation}
-                        lastIdx={idx === conversations.length - 1} />
+                       />
                 </div>
 
             ))}
