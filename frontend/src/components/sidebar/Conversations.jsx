@@ -6,7 +6,7 @@ const Conversations = () => {
     const { loading, conversations } = useGetConversations();
     console.log("Conversations:", conversations);
     return (
-        <article className="flex flex-col overflow-auto py-3">
+        <article className="flex flex-col overflow-auto py-3 max-h-[465px]">
             {conversations.map((conversation) => (
                 <div className="">
                     <div className="divider h-auto my-0"></div>
