@@ -1,4 +1,4 @@
-const TopChat = () => {
+const TopChat = ({userName}) => {
     return (
         <article className="flex w-full h-20 bg-gray-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 rounded-tr-md p-2">
 
@@ -10,7 +10,7 @@ const TopChat = () => {
                 </div>
                 <div className="flex flex-col justify-between">
                     <div className="font-bold text-white">
-                        <p>Jhon Doe</p>
+                        <p>{userName}</p>
                     </div>
                     <div className="text-gray-500 text-xs  ">
                     Having coffee and procrastinating a bit
