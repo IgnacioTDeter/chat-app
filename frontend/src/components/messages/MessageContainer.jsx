@@ -18,7 +18,7 @@ const MessageContainer = () =>{
         <section className="w-full  rounded-tr-md rounded-br-md bg-gray-800 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 flex-col ">
             {!selectedConversation ? <NoChatSelected/> : 
             <>
-            <TopChat userName = {selectedConversation.fullName} />
+            <TopChat userName = {selectedConversation.fullName}  />
             <Chat/>
             <Keyboard/>
             </>
